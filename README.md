@@ -20,11 +20,28 @@ class encdeckey {
     private $split_lenght;
     private $split_client;
 
-    private function randstringSplit() { return $randString; }
-    private function useridSplit($string) { return $elabstring; }
-    public function generateKey($username) { return $key }
+    private function randstringSplit() { return $randString; } // Return a random string
+    private function useridSplit($string) { return $elabstring; } // Return a string with the user id (it's created removing from username all the vowels)
+    public function generateKey($username) { return $key } // Return an array with the key for the server, the key for the client and the full key ("server", "client", "full")
 }
 ```
 
+## Authors
+
+- [@mattiacapelli](https://www.github.com/mattiacapelli)
+
+## Support
+<div align="center">
+            <a href="https://www.buymeacoffee.com/mattiacapelli" target="_blank" style="display: inline-block;">
+                <img
+                    src="https://img.shields.io/badge/Donate-Buy%20Me%20A%20Coffee-orange.svg?style=flat-square&logo=buymeacoffee" 
+                    align="center"
+                />
+            </a></div>
+
+
+## License
+
+[MIT](https://github.com/mattiacapelli/encdec-generator/blob/main/LICENSE)
 
 
