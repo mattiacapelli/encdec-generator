@@ -3,13 +3,11 @@
 /*
 
     This file contains the class to generate a splitted encryption key
-    -------------------------------------------------------------------
+    ------------------------------------------------------------------
+    
+    Documentation: https://github.com/mattiacapelli/encdec-generator
 
-    Structure of the key:
-    <SERVER_SPLIT-16byte><CLIENT_SPLIT-16byte>
-
-    <
-
+    ------------------------------------------------------------------
 
 */
 
