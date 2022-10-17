@@ -24,7 +24,7 @@ class encdeckey {
         "server" => "srvk", //Server Key Identificator 
     ); 
 
-    public function randstringSplit()
+    private function randstringSplit()
     {
         $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!£$%&/()=?^*+";
         $charsLenght = strlen($chars);
@@ -35,12 +35,12 @@ class encdeckey {
         return $randString;
     }
     
-    public function useridSplit($string)
+    private function useridSplit($string)
     {
         $elabstring = preg_replace('#[aeiou\s]+#i', '', $string);
         //take the first 4 chars
         $elabstring = substr($elabstring, 0, $this->split_lenght["userid"]);
-        return $elabstring;
+            
     }
 
     public function generateKey($username)
