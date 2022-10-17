@@ -1,2 +1,2 @@
-# encdec-generator
+# 🔑 Server/Client splitted Encryption Key Generator
  

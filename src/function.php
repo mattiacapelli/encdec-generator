@@ -1,19 +1,32 @@
 <?php
 
+/*
+
+    This file contains the class to generate a splitted encryption key
+    -------------------------------------------------------------------
+
+    Structure of the key:
+    <SERVER_SPLIT-16byte><CLIENT_SPLIT-16byte>
+
+    <
+
+
+*/
+
 class encdeckey {
 
     private $split_lenght = array (
         "random" => 8,
         "userid" => 4,
     );
-    private $split_clientuser = array(
-        "user" => "usrky", //User Key Identificator
-        "server" => "srvky", //Server Key Identificator 
+    private $split_client = array(
+        "user" => "usrk", //User Key Identificator
+        "server" => "srvk", //Server Key Identificator 
     ); 
 
-    private function randstringSplit()
+    public function randstringSplit()
     {
-        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!£$%&/()=?^*+";
         $charsLenght = strlen($chars);
         $randString = "";
         for ($i = 0; $i < $this->split_lenght["random"]; $i++) {
@@ -22,16 +35,26 @@ class encdeckey {
         return $randString;
     }
     
-    private function useridSplit($string)
+    public function useridSplit($string)
     {
-        $userid = preg_replace("/[aeiou]/", "", $string);
-        $userid = str_split($userid, $string);
-        return $userid;
+        $elabstring = preg_replace('#[aeiou\s]+#i', '', $string);
+        //take the first 4 chars
+        $elabstring = substr($elabstring, 0, $this->split_lenght["userid"]);
+        return $elabstring;
     }
 
-
+    public function generateKey($username)
+    {
+        $randstringserver = $this->randstringSplit();
+        $randstringuser = $this->randstringSplit();
+        $userid = $this->useridSplit($username);
+        $key = array (
+            "server" => $this->split_client["server"] . $userid . $randstringserver,
+            "user" => $this->split_client["user"] . $userid . $randstringuser,
+            "full" => $this->split_client["server"] . $userid . $randstringserver . $this->split_client["user"] . $userid . $randstringuser,
+        );
+        
+        return $key;
+    }
 }
-
-
-
 ?>
